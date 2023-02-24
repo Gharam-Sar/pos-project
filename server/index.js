@@ -12,6 +12,9 @@ dp.run(sql);
 
 sql = "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY,name)";
 dp.run(sql);
+sql = "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,name,code,price,category,img)";
+dp.run(sql);
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -37,10 +40,10 @@ app.get("/categories", (req, res) => {
   });
 });
 
-app.delete("/categories/:name", (req, res) => {
-  var name = req.params.name;
-  sql = "DELETE FROM categories WHERE name=?";
-  dp.run(sql, [name], (err) => {
+app.delete("/deleteCategories/:id", (req, res) => {
+  var id = req.params.id;
+  sql = "DELETE FROM categories WHERE id=?";
+  dp.run(sql, [id], (err) => {
     if (err) return console.log(err.message);
     sql = "SELECT * FROM categories";
     dp.all(sql, [], (err, rows) => {
@@ -70,6 +73,61 @@ app.put("/editCategories/:id/:name", function (req, res) {
   dp.run(sql, [name, id], (err) => {
     if (err) return console.log(err.message);
     sql = "SELECT * FROM categories";
+    dp.all(sql, [], (err, rows) => {
+      if (err) return console.log(err.message);
+      res.json(rows);
+    });
+  });
+});
+
+app.post("/addProducts/:name/:code/:price/:category/:img", function (req, res) {
+  var name = req.params.name;
+  var code = req.params.code;
+  var price = req.params.price;
+  var category = req.params.category;
+  var img = req.params.img;
+  sql = "INSERT INTO products(name,code,price,category,img) VALUES (?,?,?,?,?)";
+  dp.run(sql, [name,code,price,category,img], (err) => {
+    if (err) return console.log(err.message);
+    sql = "SELECT * FROM products";
+    dp.all(sql, [], (err, rows) => {
+      if (err) return console.log(err.message);
+      res.json(rows);
+    });
+  });
+});
+app.get("/products", (req, res) => {
+  sql = "SELECT * FROM products";
+  dp.all(sql, [], (err, rows) => {
+    if (err) return console.log(err.message);
+    res.json(rows);
+  });
+});
+
+app.delete("/deleteProducts/:id", (req, res) => {
+  var id = req.params.id;
+  sql = "DELETE FROM products WHERE id=?";
+  dp.run(sql, [id], (err) => {
+    if (err) return console.log(err.message);
+    sql = "SELECT * FROM products";
+    dp.all(sql, [], (err, rows) => {
+      if (err) return console.log(err.message);
+      res.json(rows);
+    });
+  });
+});
+app.put("/editProduct/:id/:name/:code/:price/:category/:img", function (req, res) {
+  var id = req.params.id;
+  var name = req.params.name;
+  var code = req.params.code;
+  var price = req.params.price;
+  var category = req.params.category;
+  var img = req.params.img;
+
+  sql = "UPDATE products SET (name,code,price,category,img) = (?,?,?,?,?) WHERE id=?";
+  dp.run(sql, [name,code,price,category,img,id], (err) => {
+    if (err) return console.log(err.message);
+    sql = "SELECT * FROM products";
     dp.all(sql, [], (err, rows) => {
       if (err) return console.log(err.message);
       res.json(rows);

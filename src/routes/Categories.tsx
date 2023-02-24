@@ -3,24 +3,27 @@ import { CategoryType } from "../App";
 import { AddCategoryBackdrop } from "../components/AddCategoryBackdrop";
 import { Category } from "../components/Category";
 import { FaPlusCircle } from "react-icons/fa";
-import useTable from "../components/useTable";
-import { TableFooter } from "../components/TableFooter";
+import useCategoryTable from "../components/useCategoryTable";
+import { TableCategoryFooter } from "../components/TableCategoryFooter";
 import SearchBar from "../components/SearchBar";
 
 interface CategoriesProps {
   setCategories: Function;
   categories: CategoryType[];
+  getCategories:Function;
 }
 
 const Categories: React.FC<CategoriesProps> = ({
   setCategories,
   categories,
+  getCategories,
+
 }) => {
   const [openAddBackdrop, setOpenAddBackdrop] = React.useState<boolean>(false);
   const [page, setPage] = React.useState<number>(1);
   const [size, setSize] = React.useState<number>(5);
   const [filterValue, setFilterValue] = React.useState<string>("");
-  const { slice, range } = useTable(categories, page, size);
+  const { slice, range } = useCategoryTable(categories, page, size);
   const renderdCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(filterValue)
   );
@@ -31,32 +34,14 @@ const Categories: React.FC<CategoriesProps> = ({
   const handleAddBackdropClose = () => {
     setOpenAddBackdrop(false);
   };
-  const getCategories = async () => {
-    try {
-      const response = await fetch("/categories", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`Error! status: ${response.status}`);
-      }
-      const result = await response.json();
-      setCategories(result);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
-  const handleDelete = async (name: string) => {
+  const handleDelete = async (id: string) => {
     try {
-      let str = "/categories/" + name;
+      let str = "/deleteCategories/" + id;
       const response = await fetch(str, {
         method: "DELETE",
         body: JSON.stringify({
-          name: name,
+          id: id,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +83,7 @@ const Categories: React.FC<CategoriesProps> = ({
 
   React.useEffect(() => {
     getCategories();
-  }, []);
+  },);
   return (
     <div className="category-table">
       <div className="add-category">
@@ -134,7 +119,7 @@ const Categories: React.FC<CategoriesProps> = ({
           </tr>
         </thead>
         <tbody>
-          {filterValue != ""
+          {filterValue !== ""
             ? renderdCategories.map((category) => (
                 <Category
                   key={category.id}
@@ -155,8 +140,8 @@ const Categories: React.FC<CategoriesProps> = ({
               ))}
         </tbody>
       </table>
-      {filterValue != "" ? null : (
-        <TableFooter
+      {filterValue !== "" ? null : (
+        <TableCategoryFooter
           range={range}
           slice={slice}
           setPage={setPage}

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CategoryType } from "../App";
+import {  ProductType } from "../App";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
@@ -8,11 +8,11 @@ interface FooterProps {
   range: number[];
   setPage: Function;
   page: number;
-  slice: CategoryType[];
+  slice:ProductType[];
   setSize: Function;
   size: number;
 }
-export const TableFooter: React.FC<FooterProps> = ({
+export const TableProductFooter: React.FC<FooterProps> = ({
   range,
   setPage,
   page,

@@ -8,17 +8,18 @@ export interface CategoryType {
   id: number;
   name: string;
 }
-export interface Product {
+export interface ProductType {
   id: number;
   name: string;
   code: string;
   category: string;
   price: number;
+  img:string;
 }
 const App: React.FC = () => {
   const [login, setLogin] = React.useState<boolean>(false);
   const [categories, setCategories] = React.useState<CategoryType[]>([]);
-  const [products, setProducts] = React.useState<Product[]>([]);
+  const [products, setProducts] = React.useState<ProductType[]>([]);
   const handleLogin = () => {
     setLogin(true);
     localStorage.setItem("PosLoginState", true.toString());
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             setCategories={setCategories}
             setProducts={setProducts}
             categories={categories}
+            products={products}
           />
         ) : (
           <Login handleLogin={handleLogin} />

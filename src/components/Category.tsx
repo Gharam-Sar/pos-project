@@ -58,7 +58,7 @@ export const Category: React.FC<CategoryProps> = ({
         <th>{categoryName}</th>
         <th>
           <FaTrash
-            onClick={() => handleDelete(categoryName)}
+            onClick={() => handleDelete(categoryId)}
             color="black"
             fontSize="25px"
           />
