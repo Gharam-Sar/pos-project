@@ -58,7 +58,6 @@ export const EditProductBackdrop: React.FC<EditBackdropProps> = ({
             { setSubmitting }: FormikHelpers<ProductValues>
           ) => {
             setTimeout(() => {
-             
               editProduct(
                 productId,
                 values.productName,
@@ -80,8 +79,6 @@ export const EditProductBackdrop: React.FC<EditBackdropProps> = ({
 
             <Select
               sx={{ width: "200px", height: "30px", backgroundColor: "white" }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={chosenCategory}
               label="Display"
               onChange={handleChange}

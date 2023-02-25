@@ -26,7 +26,6 @@ export const AddCategoryBackdrop: React.FC<AddBackdropProps> = ({
           ) => {
             setTimeout(() => {
               addCategory(values.categoryName);
-              // handleLogin();
               setSubmitting(false);
             }, 500);
           }}

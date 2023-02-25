@@ -10,7 +10,7 @@ interface PosProps {
   setCategories: Function;
   setProducts: Function;
   categories: CategoryType[];
-  products:ProductType[];
+  products: ProductType[];
 }
 
 export const Pos: React.FC<PosProps> = ({
@@ -20,6 +20,9 @@ export const Pos: React.FC<PosProps> = ({
   categories,
   products,
 }) => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [somethingWrong, setSomethingWrong] = React.useState<boolean>(false);
+
   const getCategories = async () => {
     try {
       const response = await fetch("/categories", {
@@ -33,19 +36,58 @@ export const Pos: React.FC<PosProps> = ({
         throw new Error(`Error! status: ${response.status}`);
       }
       const result = await response.json();
+      setTimeout(() => {}, 20000);
+      setIsLoading(false);
+      setSomethingWrong(false);
+
       setCategories(result);
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
+      setSomethingWrong(true);
     }
   };
+  const getProducts = async () => {
+    try {
+      const response = await fetch("/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setTimeout(() => {}, 20000);
+      setIsLoading(false);
+      setSomethingWrong(false);
 
+      setProducts(result);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+      setSomethingWrong(true);
+    }
+  };
 
   return (
     <>
       <Navbar handleLogout={handleLogout} />
       <div className="container">
         <Routes>
-          <Route path="/" element={<PosPage />} />
+          <Route
+            path="/"
+            element={
+              <PosPage
+                getCategories={getCategories}
+                getProducts={getProducts}
+                products={products}
+                categories={categories}
+              />
+            }
+          />
           <Route
             path="/Categories"
             element={
@@ -53,13 +95,29 @@ export const Pos: React.FC<PosProps> = ({
                 setCategories={setCategories}
                 categories={categories}
                 getCategories={getCategories}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                somethingWrong={somethingWrong}
+                setSomethingWrong={setSomethingWrong}
               />
             }
           />
-          <Route path="/Products" element={<Products setProducts={setProducts}
+          <Route
+            path="/Products"
+            element={
+              <Products
+                setProducts={setProducts}
                 products={products}
                 categories={categories}
-                getCategories={getCategories} />} />
+                getCategories={getCategories}
+                getProducts={getProducts}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                somethingWrong={somethingWrong}
+                setSomethingWrong={setSomethingWrong}
+              />
+            }
+          />
         </Routes>
       </div>
     </>

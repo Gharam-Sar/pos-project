@@ -19,7 +19,7 @@ const SearchBar: React.FC<searchBarProps> = ({
           }}
           type="search"
           className="searchBar"
-          placeholder="Search for a Category"
+          placeholder="Search"
         />
       </div>
     </div>

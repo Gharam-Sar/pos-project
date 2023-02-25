@@ -11,9 +11,9 @@ interface ProductProps {
   categoryName: string;
   productPrice: number;
   productImg: string;
-    handleDelete: Function;
+  handleDelete: Function;
   setProducts: Function;
-  categories:CategoryType[]
+  categories: CategoryType[];
 }
 
 export const Product: React.FC<ProductProps> = ({
@@ -23,16 +23,16 @@ export const Product: React.FC<ProductProps> = ({
   categoryName,
   productPrice,
   productImg,
-    handleDelete,
+  handleDelete,
   setProducts,
   categories,
 }) => {
-  var image_path = '';  
-  try {  
-      image_path = require("../imgs/" + categoryName + "/" + productImg); 
-  } catch(err){  
-      image_path = require('../logo.svg');  
-  }  
+  var image_path = "";
+  try {
+    image_path = require("../imgs/" + categoryName + "/" + productImg);
+  } catch (err) {
+    image_path = require("../logo.svg");
+  }
   const [openEditBackdrop, setOpenEditBackdrop] =
     React.useState<boolean>(false);
 
@@ -43,13 +43,19 @@ export const Product: React.FC<ProductProps> = ({
   const handleEditBackdropClose = () => {
     setOpenEditBackdrop(false);
   };
-    const editProduct = async (productId: number,  productName: string,
-      productCode: string,
-      productPrice: number,
-      productCategory: string,
-      productImg: string) => {
-      try {
-        const str = "/editProduct/" + productId + "/" +
+  const editProduct = async (
+    productId: number,
+    productName: string,
+    productCode: string,
+    productPrice: number,
+    productCategory: string,
+    productImg: string
+  ) => {
+    try {
+      const str =
+        "/editProduct/" +
+        productId +
+        "/" +
         productName +
         "/" +
         productCode +
@@ -59,32 +65,32 @@ export const Product: React.FC<ProductProps> = ({
         productCategory +
         "/" +
         productImg;
-        const response = await fetch(str, {
-          method: "PUT",
-          body: JSON.stringify({
-            id: productId,
-            name: productName,
-            code: productCode,
-            price: productPrice,
-            category: productCategory,
-            img: productImg,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-        if (!response.ok) {
-          throw new Error(`Error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        setProducts(result);
-        handleEditBackdropClose();
-      } catch (err) {
-        console.log(err);
+      const response = await fetch(str, {
+        method: "PUT",
+        body: JSON.stringify({
+          id: productId,
+          name: productName,
+          code: productCode,
+          price: productPrice,
+          category: productCategory,
+          img: productImg,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
       }
-    };
+
+      const result = await response.json();
+      setProducts(result);
+      handleEditBackdropClose();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <tr>
@@ -95,7 +101,7 @@ export const Product: React.FC<ProductProps> = ({
         <th>{categoryName}</th>
         <th>
           <img
-          alt={productName}
+            alt={productName}
             width="100px"
             height="100px"
             src={image_path}

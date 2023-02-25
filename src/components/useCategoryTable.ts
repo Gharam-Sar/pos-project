@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { CategoryType, ProductType } from "../App";
 
-const calculateRange = (data: CategoryType[]|ProductType[], rowsPerPage: number) => {
+const calculateRange = (
+  data: CategoryType[] | ProductType[],
+  rowsPerPage: number
+) => {
   const range = [];
   const num = Math.ceil(data.length / rowsPerPage);
   for (let i = 1; i <= num; i++) {
@@ -14,7 +17,11 @@ const sliceData = (data: CategoryType[], page: number, rowsPerPage: number) => {
   return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 };
 
-const useCategoryTable = (data: CategoryType[], page: number, rowsPerPage: number) => {
+const useCategoryTable = (
+  data: CategoryType[],
+  page: number,
+  rowsPerPage: number
+) => {
   const [tableRange, setTableRange] = useState<number[]>([]);
   const [slice, setSlice] = useState<CategoryType[]>([]);
 

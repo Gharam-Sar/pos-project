@@ -64,8 +64,6 @@ export const AddProductBackdrop: React.FC<AddBackdropProps> = ({
 
             <Select
               sx={{ width: "200px", height: "30px", backgroundColor: "white" }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={chosenCategory}
               label="Display"
               onChange={handleChange}

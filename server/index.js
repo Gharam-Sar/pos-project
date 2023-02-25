@@ -12,7 +12,8 @@ dp.run(sql);
 
 sql = "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY,name)";
 dp.run(sql);
-sql = "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,name,code,price,category,img)";
+sql =
+  "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,name,code,price,category,img)";
 dp.run(sql);
 
 const PORT = process.env.PORT || 3001;
@@ -87,7 +88,7 @@ app.post("/addProducts/:name/:code/:price/:category/:img", function (req, res) {
   var category = req.params.category;
   var img = req.params.img;
   sql = "INSERT INTO products(name,code,price,category,img) VALUES (?,?,?,?,?)";
-  dp.run(sql, [name,code,price,category,img], (err) => {
+  dp.run(sql, [name, code, price, category, img], (err) => {
     if (err) return console.log(err.message);
     sql = "SELECT * FROM products";
     dp.all(sql, [], (err, rows) => {
@@ -116,24 +117,28 @@ app.delete("/deleteProducts/:id", (req, res) => {
     });
   });
 });
-app.put("/editProduct/:id/:name/:code/:price/:category/:img", function (req, res) {
-  var id = req.params.id;
-  var name = req.params.name;
-  var code = req.params.code;
-  var price = req.params.price;
-  var category = req.params.category;
-  var img = req.params.img;
+app.put(
+  "/editProduct/:id/:name/:code/:price/:category/:img",
+  function (req, res) {
+    var id = req.params.id;
+    var name = req.params.name;
+    var code = req.params.code;
+    var price = req.params.price;
+    var category = req.params.category;
+    var img = req.params.img;
 
-  sql = "UPDATE products SET (name,code,price,category,img) = (?,?,?,?,?) WHERE id=?";
-  dp.run(sql, [name,code,price,category,img,id], (err) => {
-    if (err) return console.log(err.message);
-    sql = "SELECT * FROM products";
-    dp.all(sql, [], (err, rows) => {
+    sql =
+      "UPDATE products SET (name,code,price,category,img) = (?,?,?,?,?) WHERE id=?";
+    dp.run(sql, [name, code, price, category, img, id], (err) => {
       if (err) return console.log(err.message);
-      res.json(rows);
+      sql = "SELECT * FROM products";
+      dp.all(sql, [], (err, rows) => {
+        if (err) return console.log(err.message);
+        res.json(rows);
+      });
     });
-  });
-});
+  }
+);
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

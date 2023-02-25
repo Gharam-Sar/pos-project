@@ -14,7 +14,11 @@ const sliceData = (data: ProductType[], page: number, rowsPerPage: number) => {
   return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 };
 
-const useProductTable = (data: ProductType[], page: number, rowsPerPage: number) => {
+const useProductTable = (
+  data: ProductType[],
+  page: number,
+  rowsPerPage: number
+) => {
   const [tableRange, setTableRange] = useState<number[]>([]);
   const [slice, setSlice] = useState<ProductType[]>([]);
 

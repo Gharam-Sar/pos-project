@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {  ProductType } from "../App";
+import { ProductType } from "../App";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
@@ -8,7 +8,7 @@ interface FooterProps {
   range: number[];
   setPage: Function;
   page: number;
-  slice:ProductType[];
+  slice: ProductType[];
   setSize: Function;
   size: number;
 }
