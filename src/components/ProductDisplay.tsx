@@ -55,7 +55,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
           <MenuItem value={category.name}>{category.name}</MenuItem>
         ))}
       </Select>
-      <div className="product-display-style">
+      <div title="productGrid" className="product-display-style">
         {filterValue !== ""
           ? renderdProducts.map((product) => (
               <ProductStyle

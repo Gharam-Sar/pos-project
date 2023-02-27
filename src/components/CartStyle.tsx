@@ -23,7 +23,7 @@ const CartStyle: React.FC<CartStyleProps> = ({
               <th>Total </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody title="cartProducts">
             {currentProducts.map((product) => {
               return (
                 <CartProduct

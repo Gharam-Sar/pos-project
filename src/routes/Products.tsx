@@ -176,7 +176,7 @@ const Products: React.FC<ProductsProps> = ({
                 <th>Edit</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody title="productTable">
               {filterValue !== ""
                 ? renderdProducts.map((product) => (
                     <Product

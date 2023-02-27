@@ -144,7 +144,7 @@ const Categories: React.FC<CategoriesProps> = ({
                 <th>Edit</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody title="categoryTable">
               {filterValue !== ""
                 ? renderdCategories.map((category) => (
                     <Category
