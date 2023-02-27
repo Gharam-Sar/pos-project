@@ -4,7 +4,7 @@ import PosPage from "../routes/PosPage";
 import { Route, Routes } from "react-router-dom";
 import React from "react";
 import Categories from "../routes/Categories";
-import { CategoryType, ProductType } from "../App";
+import { CategoryType, ProductType } from "../types";
 interface PosProps {
   handleLogout: Function;
   setCategories: Function;

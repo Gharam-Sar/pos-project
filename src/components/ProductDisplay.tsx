@@ -1,5 +1,5 @@
 import React from "react";
-import { CategoryType, ProductType } from "../App";
+import { CategoryType, ProductType } from "../types";
 import { ProductStyle } from "./ProductStyle";
 import SearchBar from "./SearchBar";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,12 +11,12 @@ interface ProductDisplayProps {
   categories: CategoryType[];
   getCategories: Function;
   getProducts: Function;
+  setCurrentProducts: Function;
 }
 const ProductDisplay: React.FC<ProductDisplayProps> = ({
   products,
   categories,
-  getCategories,
-  getProducts,
+  setCurrentProducts,
 }) => {
   const [filterValue, setFilterValue] = React.useState<string>("");
   const [chosenCategory, setChosenCategory] = React.useState<string>("");
@@ -30,10 +30,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
   const renderdProducts = products.filter((product) =>
     product.name.toLowerCase().includes(filterValue)
   );
-  React.useEffect(() => {
-    getCategories();
-    getProducts();
-  });
+
   return (
     <div className="product-display-page">
       <SearchBar
@@ -69,6 +66,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
                 categoryName={product.category}
                 productImg={product.img}
                 productPrice={product.price}
+                setCurrentProducts={setCurrentProducts}
               />
             ))
           : chosenCategory !== ""
@@ -81,6 +79,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
                 categoryName={product.category}
                 productImg={product.img}
                 productPrice={product.price}
+                setCurrentProducts={setCurrentProducts}
               />
             ))
           : products.map((product) => (
@@ -92,6 +91,7 @@ const ProductDisplay: React.FC<ProductDisplayProps> = ({
                 categoryName={product.category}
                 productImg={product.img}
                 productPrice={product.price}
+                setCurrentProducts={setCurrentProducts}
               />
             ))}
       </div>

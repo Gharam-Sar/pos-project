@@ -4,7 +4,7 @@ import { Formik, Field, Form, FormikHelpers } from "formik";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
-import { CategoryType } from "../App";
+import { CategoryType } from "../types";
 interface EditBackdropProps {
   handleBackdropClose: Function;
   editProduct: Function;

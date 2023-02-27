@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CategoryType, ProductType } from "../App";
+import { ProductType } from "../types";
 
 const calculateRange = (data: ProductType[], rowsPerPage: number) => {
   const range = [];

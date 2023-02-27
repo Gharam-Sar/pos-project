@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
-import { CategoryType } from "../App";
+import { CategoryType } from "../types";
 import { EditProductBackdrop } from "./EditProductBackdrop";
 
 interface ProductProps {

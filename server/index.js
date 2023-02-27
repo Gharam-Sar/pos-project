@@ -15,6 +15,9 @@ dp.run(sql);
 sql =
   "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,name,code,price,category,img)";
 dp.run(sql);
+sql =
+  "CREATE TABLE IF NOT EXISTS carts(id INTEGER PRIMARY KEY,time,products,tax,discount,closed,total)";
+dp.run(sql);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -139,6 +142,7 @@ app.put(
     });
   }
 );
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

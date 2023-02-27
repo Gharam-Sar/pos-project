@@ -1,5 +1,5 @@
 import React from "react";
-import { CategoryType } from "../App";
+import { CategoryType } from "../types";
 import { AddCategoryBackdrop } from "../components/AddCategoryBackdrop";
 import { Category } from "../components/Category";
 import { FaPlusCircle } from "react-icons/fa";
@@ -112,20 +112,19 @@ const Categories: React.FC<CategoriesProps> = ({
           Something went Wrong with the server, try refreshing the page{" "}
         </span>
       ) : (
-        <div className="category-table">
-          <div className="add-category">
+        <div className="category-product-table">
+          <div className="add-category-product">
             <SearchBar
               filterValue={filterValue}
               onFilterValueChange={setFilterValue}
             />
-            <div className="add-category-btn">
+            <div
+              className="add-category-product-btn"
+              onClick={() => handleAddBackdropOpen()}
+            >
               <span>ADD NEW CATEGORY</span>
               <span>
-                <FaPlusCircle
-                  onClick={() => handleAddBackdropOpen()}
-                  color="black"
-                  fontSize="30px"
-                />
+                <FaPlusCircle color="black" fontSize="30px" />
               </span>
             </div>
           </div>

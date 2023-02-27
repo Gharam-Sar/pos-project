@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlusCircle } from "react-icons/fa";
-import { CategoryType, ProductType } from "../App";
+import { CategoryType, ProductType } from "../types";
 import { AddProductBackdrop } from "../components/AddProductBackdrop";
 import { Product } from "../components/Product";
 import SearchBar from "../components/SearchBar";
@@ -138,20 +138,19 @@ const Products: React.FC<ProductsProps> = ({
           Something went Wrong with the server, try refreshing the page
         </span>
       ) : (
-        <div className="category-table">
-          <div className="add-category">
+        <div className="category-product-table">
+          <div className="add-category-product">
             <SearchBar
               filterValue={filterValue}
               onFilterValueChange={setFilterValue}
             />
-            <div className="add-category-btn">
+            <div
+              className="add-category-product-btn"
+              onClick={() => handleAddBackdropOpen()}
+            >
               <span>ADD NEW PRODUCT</span>
               <span>
-                <FaPlusCircle
-                  onClick={() => handleAddBackdropOpen()}
-                  color="black"
-                  fontSize="30px"
-                />
+                <FaPlusCircle color="black" fontSize="30px" />
               </span>
             </div>
           </div>

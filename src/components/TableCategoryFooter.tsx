@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CategoryType } from "../App";
+import { CategoryType } from "../types";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";

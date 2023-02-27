@@ -4,18 +4,8 @@ import { Login } from "./components/Login";
 // import { Provider, useSelector, useDispatch } from "react-redux";
 import { Pos } from "./components/Pos";
 import { BrowserRouter } from "react-router-dom";
-export interface CategoryType {
-  id: number;
-  name: string;
-}
-export interface ProductType {
-  id: number;
-  name: string;
-  code: string;
-  category: string;
-  price: number;
-  img:string;
-}
+import { CategoryType, ProductType } from "./types";
+
 const App: React.FC = () => {
   const [login, setLogin] = React.useState<boolean>(false);
   const [categories, setCategories] = React.useState<CategoryType[]>([]);
@@ -32,6 +22,7 @@ const App: React.FC = () => {
     const PosLoginState: boolean = JSON.parse(
       localStorage.getItem("PosLoginState")!
     );
+    
     if (Boolean(PosLoginState)) {
       setLogin(PosLoginState);
     }
