@@ -22,7 +22,6 @@ const PosPage: React.FC<PosPageProps> = ({
     if (categories.length === 0) getCategories();
     if (products.length === 0) {
       getProducts();
-      console.log("Fff");
     }
   });
   return (

@@ -15,7 +15,6 @@ export const Login: React.FC<LoginProps> = ({ handleLogin }) => {
 
   const checkLogin = async (userName: string, password: string) => {
     try {
-      console.log(userName, password);
       let str = "/user/" + userName + "/" + password;
       const response = await fetch(str, {
         method: "GET",

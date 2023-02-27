@@ -1,8 +1,12 @@
+/*
+to start the server and the react app, you need 2 terminals
+terminal 1 : cd pos then npm start 
+terminal 2 : cd pos then cd server then npm start 
+*/
 import * as React from "react";
 import "./index.css";
 import { Login } from "./components/Login";
-// import { Provider, useSelector, useDispatch } from "react-redux";
-import { Pos } from "./components/Pos";
+import { Pos } from "./routes/Pos";
 import { BrowserRouter } from "react-router-dom";
 import { CategoryType, ProductType } from "./types";
 
@@ -22,7 +26,7 @@ const App: React.FC = () => {
     const PosLoginState: boolean = JSON.parse(
       localStorage.getItem("PosLoginState")!
     );
-    
+
     if (Boolean(PosLoginState)) {
       setLogin(PosLoginState);
     }

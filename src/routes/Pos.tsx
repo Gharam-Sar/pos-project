@@ -1,9 +1,9 @@
-import Navbar from "./Navbar";
-import Products from "../routes/Products";
-import PosPage from "../routes/PosPage";
+import Navbar from "../components/Navbar";
+import Products from "./Products";
+import PosPage from "./PosPage";
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import Categories from "../routes/Categories";
+import Categories from "./Categories";
 import { CategoryType, ProductType } from "../types";
 interface PosProps {
   handleLogout: Function;
@@ -39,7 +39,6 @@ export const Pos: React.FC<PosProps> = ({
       setTimeout(() => {}, 20000);
       setIsLoading(false);
       setSomethingWrong(false);
-
       setCategories(result);
     } catch (err) {
       console.log(err);

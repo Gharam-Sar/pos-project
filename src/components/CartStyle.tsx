@@ -1,5 +1,6 @@
 import React from "react";
 import { CartProductDetails } from "../types";
+import CartProduct from "./CartProduct";
 interface CartStyleProps {
   setCurrentProducts: Function;
   currentProducts: CartProductDetails[];
@@ -10,15 +11,29 @@ const CartStyle: React.FC<CartStyleProps> = ({
   currentProducts,
 }) => {
   return (
-    <div className="carts-style">
-      <div className="carts-product-display">
-        {currentProducts.map((product) => {
-          return (
-            <div>
-              <span>{product.product?.name} </span>
-            </div>
-          );
-        })}
+    <div className="cart-style">
+      <div className="carts-product-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Delete</th>
+              <th>Product </th>
+              <th>Price </th>
+              <th>Quantity </th>
+              <th>Total </th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentProducts.map((product) => {
+              return (
+                <CartProduct
+                  setCurrentProducts={setCurrentProducts}
+                  product={product}
+                />
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

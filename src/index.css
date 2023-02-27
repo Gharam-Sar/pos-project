@@ -197,21 +197,12 @@ body {
   text-decoration: none;
   font-size: 20px;
 }
-
-.category-product-table {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 20px;
-}
 .add-category-product {
   border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  column-gap:2%;
+  column-gap: 2%;
   letter-spacing: 0.1rem;
   transition: 0.5s ease;
   width: 100%;
@@ -278,7 +269,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .category-product-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
   padding-bottom: 5%;
 }
 .category-product-table table {
@@ -427,26 +425,109 @@ body {
   align-items: flex-start;
   row-gap: 3%;
 }
-.barcode-scanner-section{
+.barcode-scanner-section {
   padding: 2%;
   display: flex;
   column-gap: 1%;
   justify-content: center;
 }
-.barcode-scanner{
- border-radius: 10px;
- width: 60%;
-height: 30px;
-padding: 1%;
+.barcode-scanner {
+  border-radius: 10px;
+  width: 60%;
+  height: 30px;
+  padding: 1%;
 }
 
-.barcode-scanner-section button{
- background-color: #88b3be;
- border-radius: 10px;
- padding: 1%;
-
+.barcode-scanner-section button {
+  background-color: #8aa5ac;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 1%;
+  width: 10%;
+}
+.carts-product-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  padding-bottom: 5%;
+}
+.carts-product-table table {
+  font-size: 20px;
+  width: 100%;
+  border-radius: 20px;
+}
+.carts-product-table table tr {
+  box-shadow: 0px 0px 0px 1px rgb(65, 65, 65);
+  border-radius: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
+.carts-product-table th {
+  width: 5%;
+  text-align: center;
+  padding: 1%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.cart-style {
+  height: 300px;
+  overflow: scroll;
+}
+.plus-minus {
+  background-color: #88b3be;
+  border-radius: 50%;
+  padding: 1%;
+}
+.checkout-item {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 1%;
+  margin: 2% 5% 1% 5%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background-color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(102, 99, 99, 0.7);
+}
+.checkout-item input {
+  border: none;
+  text-align: end;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.checkout-title {
+  padding-right: 5%;
+  border-right: 1px solid rgba(102, 99, 99, 0.7);
+}
+.checkout-btns {
+  display: flex;
+  justify-content: center;
+  column-gap: 2%;
+}
+.checkout-btns button {
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  margin: 1%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+.checkout-btns button:hover {
+  background-color: rgb(209, 218, 158);
+}
+.checkout-btn {
+  background-color: #8bb678;
+}
+.cancel-btn {
+  background-color: #b68f78;
+}
 @media only screen and (max-width: 600px) {
   .login-page h1 {
     font-size: 20px;

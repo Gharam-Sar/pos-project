@@ -22,7 +22,6 @@ export const TableCategoryFooter: React.FC<FooterProps> = ({
 }) => {
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     setSize(event.target.value as number);
-    console.log(size);
   };
   useEffect(() => {
     if (slice.length < 1 && page !== 1) {

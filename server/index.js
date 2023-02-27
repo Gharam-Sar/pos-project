@@ -1,3 +1,8 @@
+/*
+to start the server and the react app, you need 2 terminals
+terminal 1 : cd pos then npm start 
+terminal 2 : cd pos then cd server then npm start 
+*/
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 let sql;
@@ -16,7 +21,7 @@ sql =
   "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,name,code,price,category,img)";
 dp.run(sql);
 sql =
-  "CREATE TABLE IF NOT EXISTS carts(id INTEGER PRIMARY KEY,time,products,tax,discount,closed,total)";
+  "CREATE TABLE IF NOT EXISTS checkouts(id INTEGER PRIMARY KEY,subtotal,tax,discount,total)";
 dp.run(sql);
 
 const PORT = process.env.PORT || 3001;
@@ -143,6 +148,18 @@ app.put(
   }
 );
 
+app.post("/checkout/:subtotal/:tax/:discount/:total", function (req, res) {
+  var subtotal = req.params.subtotal;
+  var tax = req.params.tax;
+  var discount = req.params.discount;
+  var total = req.params.total;
+
+  sql = "INSERT INTO checkouts(subtotal,tax,discount,total) VALUES (?,?,?,?)";
+  dp.run(sql, [subtotal, tax, discount, total], (err) => {
+    if (err) return console.log(err.message);
+  });
+  res.json("OK");
+});
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
